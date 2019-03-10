@@ -11,26 +11,10 @@ jobs:
       inputs:
         filePath: 'Test.ps1'
 
-    - task: CopyFiles@2
+    - task: PowerShell@2
       condition: always()
       inputs:
-        sourceFolder: $env:ChocolateyInstall\log
-        contents: '**' 
-        targetFolder: $(Build.ArtifactStagingDirectory)
-
-    - task: CopyFiles@2
-      condition: always()
-      inputs:
-        sourceFolder: $env:TEMP\chocolatey
-        contents: '**' 
-        targetFolder: $(Build.ArtifactStagingDirectory)
-
-    - task: CopyFiles@2
-      condition: always()
-      inputs:
-        sourceFolder: $env:ChocolateyInstall\config
-        contents: '**' 
-        targetFolder: $(Build.ArtifactStagingDirectory)
+        filePath: 'CopyFiles.ps1'
 
     - task: PublishBuildArtifacts@1
       condition: always()
